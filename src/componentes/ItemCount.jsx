@@ -14,11 +14,7 @@ export const ItemCount = ({ onAdd, stock }) => {
             setCount(prev => prev + 1);
         }
     };
-
-    /* const onAdd = () => {
-       alert(count)
-    }; */
- 
+    
     return(
         <div className="itemcount">
             <button><span onClick={handleDecreaseCount}>-</span></button>
