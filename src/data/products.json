@@ -1,0 +1,39 @@
+[
+    {
+        "name": "samsung galaxy A54",
+        "image": "https://http2.mlstatic.com/D_NQ_NP_732057-MLA70868353813_082023-O.webp",
+        "stock": 3,
+        "category": "Samsung",
+        "description": "Fotografía profesional en tu bolsillo Descubrí infinitas posibilidades para tus fotos con las 3 cámaras principales de tu equipo. Poné a prueba tu creatividad y jugá con la iluminación, diferentes planos y efectos para obtener grandes resultados.",
+        "id": "1",
+        "price": 250.000
+    },
+    {
+        "name": "samsung galaxy A34",
+        "image": "https://http2.mlstatic.com/D_NQ_NP_651776-MLA54688514315_032023-O.webp",
+        "stock": 2,
+        "category": "Samsung",
+        "description": "Experiencia visual increíble Mirá tus series y películas favoritas con la mejor definición a través de su pantalla Super AMOLED de 6.5. Disfrutá de colores brillantes y detalles precisos en todos tus contenidos.",
+        "id": "2",
+        "price": 200.000
+    },
+    {
+        "name": "Moto G13",
+        "image": "https://http2.mlstatic.com/D_NQ_NP_811623-MLU70795868358_082023-O.webp",
+        "stock": 4,
+        "category": "Motorola",
+        "description": "Fotografía profesional en tu bolsillo Descubrí infinitas posibilidades para tus fotos con las 3 cámaras principales de tu equipo. Poné a prueba tu creatividad y jugá con la iluminación, diferentes planos y efectos para obtener grandes resultados.",
+        "id": "3",
+        "price": 160.000
+    },
+    {
+        "name": "Moto G72",
+        "image": "https://http2.mlstatic.com/D_NQ_NP_802018-MLA70352307369_072023-O.webp",
+        "stock": 1,
+        "category": "Motorola",
+        "description": "Motorola Moto G72 Captura vida con píxeles Conquista el día. Y la noche Captura momentos inolvidables gracias a un espectacular sistema de cámara Ultra Pixel de 108 MP con infinitas posibilidades creativas",
+        "id": "4",
+        "price": 100.000
+    }
+]
+
