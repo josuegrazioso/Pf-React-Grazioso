@@ -7,9 +7,15 @@ import { CartContext } from "../contexts/CartContext";
 export const CartWidget = () => {
     const { totalWidget } = useContext(CartContext)
 
+    const imageStyles = {
+        width: "32px",
+        height: "32px",
+        marginRight: "8px",
+    };
+
     return (
         <Link to="/cart">
-            <img className="span" src={cart} alt="Cart" /> <span>{totalWidget}</span>
+            <img style={imageStyles} src={cart} alt="Cart" /> <span>{totalWidget}</span>
         </Link>
     )
 }
