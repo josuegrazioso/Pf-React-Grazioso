@@ -7,13 +7,44 @@ img {
   height: 100px;
 }
  #carrito{
-  height: 30px;
+  height: 32px;
+  width: 32px;
 }
 span {
   padding-left: 0.5rem;
   color: rgb(52, 47, 206);
+  margin-Right: 80px;
 }
 .itemCount span {
  color: black;
  padding: 1rem;
 }
+.botones{
+  height: 50px;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  border: none;
+  transition: 1s;
+}
+.botones:hover{
+  background-color: rgb(0, 255, 55);
+  color: black;
+  border-radius: 15px;
+}
+.botones-borrar{
+  height: 50px;
+  background-color: rgb(255, 0, 0);
+  color: white;
+  border: none;
+  transition: 0.5s;
+}
+.botones-borrar:hover{
+  border-radius: 10px;
+  color: black;
+}
+  
+.boton {
+  height: 30px;
+  width: 60px;
+}
+  

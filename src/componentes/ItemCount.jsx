@@ -17,9 +17,9 @@ export const ItemCount = ({onAdd,stock}) => {
 
     return (
         <div className="itemCount">
-            <span onClick={handleDecreaseCount}>-</span>
+            <button class="boton"><span onClick={handleDecreaseCount}>-</span></button>
             <span>{count}</span>
-            <span onClick={handleIncreaseCount}>+</span>
+            <button class="boton"><span onClick={handleIncreaseCount}>+</span></button>
             <button onClick={() => onAdd(count)}>Agregar al carrito</button>
         </div>
     );

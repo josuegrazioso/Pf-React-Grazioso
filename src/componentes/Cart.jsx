@@ -66,7 +66,7 @@ export const Cart = () => {
               <td>{item.precio} </td>
               <td>{item.quantity} </td>
               <td>
-                <button onClick={() => removeItem(item.id)}>Eliminar</button>
+                <button class="botones-borrar" onClick={() => removeItem(item.id)}>Eliminar</button>
               </td>
             </tr>
           ))}
@@ -74,7 +74,7 @@ export const Cart = () => {
         <tfoot>
           <tr>
             <td>
-              <button onClick={() => clear()}>Borrar todo</button>
+              <button class="botones-borrar" onClick={() => clear()}>Borrar todo</button>
             </td>
           </tr>
           <tr>
@@ -119,7 +119,7 @@ export const Cart = () => {
           />
         </Form.Group>
       </Form>
-      <button onClick={sendOrder}>Comprar</button>
+      <button class="botones" onClick={sendOrder}>Comprar</button>
     </Container>
   );
 };

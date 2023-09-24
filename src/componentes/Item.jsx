@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card';
     export const Item = ({product}) => (
         <Card key={product.id} style={{ width: '20rem' }}>
         <Card.Img 
-        style={{height: "180px"}} 
+        style={{height: "360px"}} 
         variant="top" 
         src={product.imagen} 
       />
