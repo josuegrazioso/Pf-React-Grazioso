@@ -5,17 +5,10 @@ import cart from "../assets/cart.png";
 import { CartContext } from "../contexts/CartContext";
 
 export const CartWidget = () => {
-    const { totalWidget } = useContext(CartContext)
+    const {totalWidget} = useContext(CartContext)
 
-    const imageStyles = {
-        width: "32px",
-        height: "32px",
-        marginRight: "8px",
-    };
-
-    return (
-        <Link to="/cart">
-            <img style={imageStyles} src={cart} alt="Cart" /> <span>{totalWidget}</span>
-        </Link>
-    )
-}
+return (
+  <Link to="/cart">
+    <img id="carrito" src={cart} alt="Cart" /> <span>{totalWidget}</span>
+  </Link>)
+};

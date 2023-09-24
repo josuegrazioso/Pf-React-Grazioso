@@ -1,136 +1,128 @@
-import React, { useContext, useState } from "react";
-import { Table, Form, Button } from "react-bootstrap";
+import { Container, Table } from "react-bootstrap";
+import { useContext } from "react";
+import { useState } from "react";
 import { CartContext } from "../contexts/CartContext";
-import { collection, addDoc, getFirestore } from "firebase/firestore";
+import Form from "react-bootstrap/Form";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 
-const Cart = () => {
-  const { clear, items, removeItem } = useContext(CartContext);
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-  });
+export const Cart = () => {
+  const [formValues, setFormValues] = useState("");
+  const { items, removeItem, clear } = useContext(CartContext);
+  console.log(items)
+
 
   const total = () =>
     items.reduce(
       (acumulador, valorActual) =>
-        acumulador +(valorActual.quantity * valorActual.precio),
+        acumulador + valorActual.quantity * valorActual.precio,
       0
     );
 
+
   const handleChange = (ev) => {
-    const { name, value } = ev.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    setFormValues((prev) => ({
+      ...prev,
+      [ev.target.name]: ev.target.value,
+    }));
   };
 
-  const handleSubmit = async (ev) => {
-    ev.preventDefault();
+  const sendOrder = () => {
     const order = {
-      buyer: formData,
+      name: formValues,
       items,
       total: total(),
     };
 
-    try {
-      const db = getFirestore();
-      const orderCollection = collection(db, "orders");
-      const docRef = await addDoc(orderCollection, order);
-
-      setFormData({
-        name: "",
-        phone: "",
-        email: "",
-      });
-
-      clear();
-
-      alert("Su orden: " + docRef.id + " ha sido completada!");
-    } catch (error) {
-      console.error("Error al enviar la orden:", error);
-      alert("Hubo un error al enviar la orden. Por favor, inténtelo nuevamente.");
-    }
+    const db = getFirestore();
+    const orderCollection = collection(db, "orders");
+    addDoc(orderCollection, order).then(({ id }) => {
+      if (id) {
+        setFormValues({
+          name: "",
+          phone: "",
+          email: "",
+        });
+        clear();
+        alert("Su orden: " + id + " ha sido completada");
+      }
+    });
   };
-
   return (
-    <div className="container">
-      <h1>Cart</h1>
+    <Container>
+      <h1>Carrito</h1>
       <Table striped bordered hover variant="dark">
         <thead>
           <tr>
             <th>Nombre</th>
             <th>Precio</th>
             <th>Cantidad</th>
-            <th>Subtotal</th>
-            <th>Eliminar</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           {items.map((item) => (
             <tr key={item.id}>
-              <td>{item.nombre}</td>
-              <td>${item.precio ? item.precio.toFixed(2) : 'N/A'}</td>
-              <td>{item.quantity}</td>
-              <td>${(item.quantity * item.precio).toFixed(2)}</td>
+              <td>{item.nombre} </td>
+              <td>{item.precio} </td>
+              <td>{item.quantity} </td>
               <td>
-                <button
-                  className="btn btn-danger"
-                  onClick={() => removeItem(item.id)}
-                >
-                  Eliminar
-                </button>
+                <button onClick={() => removeItem(item.id)}>Eliminar</button>
               </td>
             </tr>
           ))}
         </tbody>
         <tfoot>
           <tr>
-            <td colSpan="3">Total</td>
-            <td>${total().toFixed(2)}</td>
+            <td>
+              <button onClick={() => clear()}>Borrar todo</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Total</td>
+            <td></td>
+            <td></td>
+            <td>{total()} </td>
             <td></td>
           </tr>
         </tfoot>
       </Table>
-      <div className="buyer-info">
-        <h2>Datos de Comprador</h2>
-        <Form onSubmit={handleSubmit} className="buyer-form">
-          <Form.Group>
-            <Form.Label>Nombre:</Form.Label>
-            <Form.Control
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Teléfono:</Form.Label>
-            <Form.Control
-              type="text"
-              id="phone"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Email:</Form.Label>
-            <Form.Control
-              type="text"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Button type="submit" variant="primary">
-            Enviar Orden
-          </Button>
-        </Form>
-      </div>
-    </div>
+      <h2>Ingrese datos de usuario</h2>
+      <Form>
+        <Form.Group className="mb-3" >
+          <Form.Label>Nombre</Form.Label>
+          <Form.Control
+            onChange={handleChange}
+            value={formValues.name}
+            type="text"
+            name="name"
+            required
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" >
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            onChange={handleChange}
+            value={formValues.email}
+            type="email"
+            name="email"
+            required
+          />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Tel</Form.Label>
+          <Form.Control
+            onChange={handleChange}
+            value={formValues.phone}
+            type="text"
+            name="phone"
+            required
+          />
+        </Form.Group>
+      </Form>
+      <button onClick={sendOrder}>Comprar</button>
+    </Container>
   );
 };
 
-export default Cart;
+
 
