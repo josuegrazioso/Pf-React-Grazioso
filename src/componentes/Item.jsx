@@ -11,7 +11,7 @@ import Card from 'react-bootstrap/Card';
         src={product.imagen} 
       />
         <Card.Body>
-          <Card.Title>{product.nombre}</Card.Title>
+          <Card.Title>{product.nombre}</Card.Title> 
           <Card.Text>{product.categoryid}</Card.Text>
           <Card.Text>Stock {product.stock}</Card.Text>
           <Card.Text>Precio {`$${product.precio}`}</Card.Text>
@@ -21,3 +21,5 @@ import Card from 'react-bootstrap/Card';
         </Card.Body>
       </Card>
           )
+
+      
